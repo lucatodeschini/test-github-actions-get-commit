@@ -1,6 +1,7 @@
 name: CD
 
 on:
+  push:
   workflow_call:
     inputs:
       vault_namespace:
