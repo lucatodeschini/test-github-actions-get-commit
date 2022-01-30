@@ -1,0 +1,22 @@
+name: CD
+
+on:
+  workflow_call:
+    inputs:
+      vault_namespace:
+        required: true
+        type: string
+
+jobs:
+  test:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{github.event.after}}
+      - name: Test Repo
+        run: |
+          echo $(git log --format=%B -n 1 ${{github.event.after}})
