@@ -20,4 +20,5 @@ jobs:
           ref: ${{github.event.after}}
       - name: Test Repo
         run: |
-          echo $(git log --format=%B -n 1 ${{github.event.after}})
+          V=$(git log --format=%B -n 1 ${{github.event.after}})
+          echo "$V"
